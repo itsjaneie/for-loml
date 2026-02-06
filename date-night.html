@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Date Night</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      color: white;
+      background: black url('https://www.transparenttextures.com/patterns/stardust.png');
+      background-size: cover;
+    }
+    h1 {
+      margin-top: 80px;
+      font-size: 48px;
+      text-shadow: 0 0 15px black;
+    }
+    p {
+      font-size: 22px;
+      margin-top: 10px;
+      text-shadow: 0 0 10px black;
+    }
+    #countdown {
+      margin-top: 40px;
+      font-size: 26px;
+      color: #ffccff;
+      font-weight: bold;
+      text-shadow: 0 0 10px black;
+    }
+    .button-container {
+      margin-top: 60px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    button {
+      font-size: 22px;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #333;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    button:hover:enabled {
+      transform: scale(1.1);
+      background-color: #ff3366;
+      color: white;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    footer {
+      margin-top: 80px;
+      font-size: 18px;
+      text-shadow: 0 0 10px black;
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ Happy Valentine's day, loml! ✨</h1>
+  <p>Date Night Schedule:</p>
+
+  <!-- Countdown -->
+  <div id="countdown"></div>
+
+  <!-- Buttons (disabled until countdown finishes) -->
+  <div class="button-container">
+    <button id="scribbleBtn" disabled onclick="window.location.href='https://skribbl.io'">🎨 Play Skribbl.io</button>
+    <button id="minecraftBtn" disabled onclick="window.location.href='https://aternos.org/server/'">⛏️ Join Minecraft</button>
+    <button id="canvaBtn" disabled onclick="window.location.href='https://www.canva.com'">🖼️ Vision Board</button>
+  </div>
+
+  <footer>
+    -Jane 💖
+  </footer>
+
+  <script>
+    function startCountdown() {
+      const countdownElement = document.getElementById("countdown");
+      const targetDate = new Date("Feb 14, 2026 20:00:00").getTime();
+
+      const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+          clearInterval(timer);
+          countdownElement.innerHTML = "It's Valentine's time! 💖";
+
+          // Enable buttons once countdown is finished
+          document.getElementById("scribbleBtn").disabled = false;
+          document.getElementById("minecraftBtn").disabled = false;
+          document.getElementById("canvaBtn").disabled = false;
+        } else {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          countdownElement.innerHTML = `Countdown to Feb 14, 8 PM: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+      }, 1000);
+    }
+
+    // Start countdown on page load
+    startCountdown();
+  </script>
+</body>
+</html>
