@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>In a galaxy far far away..</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Libre+Franklin:wght@700&family=News+Cycle:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: black url('https://www.transparenttextures.com/patterns/stardust.png');
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      text-align: center;
+      font-family: 'News Cycle', sans-serif;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 40px;
+      margin-top: 40px;
+      color: #2aa6c9;
+      text-shadow: 0 0 15px #2aa6c9;
+    }
+    p.subtitle {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      margin-top: 10px;
+      color: #2aa6c9;
+      text-shadow: 0 0 12px #2aa6c9;
+    }
+    button {
+      font-family: 'Orbitron', sans-serif;
+      padding: 20px 40px;
+      margin: 20px;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background-color: #222;
+      color: #ffd966;
+      text-shadow: 0 0 10px #ffd966;
+    }
+    #messageBox {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      perspective: 400px;
+      display: none;
+    }
+    .crawl {
+      position: absolute;
+      top: 40%; /* mid distance after buttons */
+      width: 100%;
+      transform-origin: 50% 100%;
+      animation: crawl 45s linear forwards; /* slower scroll */
+      color: #ffd966;
+      font-family: 'News Cycle', sans-serif;
+      font-size: 60px;
+      line-height: 1.5;
+      text-shadow: none;
+    }
+    @keyframes crawl {
+      0% { top: 40%; transform: rotateX(10deg) translateZ(0); }
+      100% { top: -380%; transform: rotateX(10deg) translateZ(-100px); } /* scroll even further up */
+    }
+    .crawl h2 {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: 48px; /* enlarged heading */
+      margin-bottom: 20px;
+    }
+    .closingMessage {
+      text-align: center;
+      font-style: italic;
+      font-size: 60px;
+      color: #2aa6c9;
+      margin-top: 30px;
+      text-shadow: 0 0 12px #2aa6c9;
+    }
+    #errorBox {
+      margin-top: 20px;
+      font-size: 18px;
+      color: red;
+      display: none;
+      text-shadow: 0 0 10px red;
+    }
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+    .shake {
+      animation: shake 0.4s;
+    }
+  </style>
+</head>
+<body>
+  <h1>In a galaxy far far away..</h1>
+  <p class="subtitle">Happy 3rd month, loml!</p>
+
+  <!-- Buttons -->
+  <button onclick="showMessage()">click and wait</button>
+  <button onclick="goToValentine()">After you finish the first button</button>
+
+  <!-- Crawl -->
+  <div id="messageBox">
+    <div class="crawl">
+      <h2>💌 Dearest, Andrei.</h2>
+      <p>
+        I love you, Andrei! 3rd month of arguments, silly jokes, tears, and deep talks with you yet I still feel the same way the first time I said I love you, even more. I'm always trying to be better and deserve the love, patience, and chances you always give me. Cheers for more months/years of away and love, loml! Here's a note I failed to send you sometime in December and just found it again now:
+      </p>
+      <p>
+        I love you, Andrei.<br>
+        I love the way you talk, how you yap about your interests for hours without making me feel out of place.<br>
+        I love the tone of your voice whenever we have these silly jokes, or you just lambing me.<br>
+        I love the way you deal with things. I love how smart you are.<br>
+        I love everything about you.
+      </p>
+      <p>
+        I love you even more when you feel down, and whenever you tell me you're sad because you confide in me. Just how you feel safe around me, I feel safe around you too. You bring out the best in me, every emotions I have never known before, I knew myself the more I knew you. If you hate yourself sometimes, that's okay. I have enough love for you to last a lifetime.
+      </p>
+      <p class="closingMessage">
+        For all the days of my life and in the afterlife, I will always long for this life with you.  
+        I love you always, in all ways.
+      </p>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div id="errorBox">Sabing after ng first one, pumindot ka agad dito. Shoo!</div>
+
+  <script>
+    let firstOpened = false;
+
+    function showMessage() {
+      document.getElementById("messageBox").style.display = "block";
+      firstOpened = true;
+      document.getElementById("errorBox").style.display = "none";
+    }
+
+    function goToValentine() {
+      const errorBox = document.getElementById("errorBox");
+      if (firstOpened) {
+        window.location.href = 'valentine.html';
+      } else {
+        errorBox.style.display = "block";
+        errorBox.classList.add("shake");
+        setTimeout(() => errorBox.classList.remove("shake"), 500);
+      }
+    }
+  </script>
+</body>
+</html>
