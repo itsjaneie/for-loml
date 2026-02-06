@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      background: pink;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 100px;
+      font-size: 48px;
+      color: red;
+      text-shadow: 0 0 10px white;
+    }
+    .subtitle {
+      font-size: 20px;
+      color: #660066;
+      margin-top: 10px;
+      font-style: italic;
+    }
+    #buttons {
+      margin-top: 50px;
+    }
+    button {
+      font-size: 24px;
+      padding: 15px 30px;
+      margin: 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #yesBtn {
+      background-color: red;
+      color: white;
+    }
+    #noBtn {
+      background-color: gray;
+      color: white;
+    }
+    #message {
+      margin-top: 30px;
+      font-size: 22px;
+      color: purple;
+      font-weight: bold;
+    }
+    #countdown {
+      margin-top: 40px;
+      font-size: 26px;
+      color: #333;
+      font-weight: bold;
+    }
+    #invitation {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #d10000;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>Few days 'til Valentine's day. Be my valentine, baby.</h1>
+  <p class="subtitle">try clicking no...</p>
+
+  <div id="buttons">
+    <button id="yesBtn" onclick="sayYes()">Yes</button>
+    <button id="noBtn" onclick="sayNo()">No</button>
+  </div>
+
+  <div id="message"></div>
+  <div id="countdown"></div>
+  <div id="invitation"></div>
+
+  <script>
+    let yesSize = 1; // scale factor for Yes button
+    let noClicks = 0;
+
+    function sayYes() {
+      document.getElementById("message").innerHTML = "Yay! I love you!";
+      document.getElementById("buttons").style.display = "none";
+
+      // Show countdown and invitation
+      startCountdown();
+      document.getElementById("invitation").innerHTML = "Kinda planned something for Valentine's Day. See you on our date night!";
+    }
+
+    function sayNo() {
+      noClicks++;
+      const messageBox = document.getElementById("message");
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+
+      // Show a silly message
+      const sillyMessages = [
+        "Talaga ba?",
+        "Isa paaaa.",
+        "Tumesting ka pa talaga",
+        "HOY MAG YES KA!",
+        "u gave me no choice but to remove that button"
+      ];
+      messageBox.innerHTML = sillyMessages[Math.min(noClicks - 1, sillyMessages.length - 1)];
+
+      // Make Yes button bigger
+      yesSize += 0.3;
+      yesBtn.style.transform = `scale(${yesSize})`;
+
+      // After a few clicks, remove the No button
+      if (noClicks >= sillyMessages.length) {
+        noBtn.style.display = "none";
+      }
+    }
+
+    function startCountdown() {
+      const countdownElement = document.getElementById("countdown");
+      const targetDate = new Date("Feb 14, 2026 20:00:00").getTime();
+
+      const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+          clearInterval(timer);
+          countdownElement.innerHTML = "It's Valentine's time! 💖";
+        } else {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          countdownElement.innerHTML = `Countdown to Feb 14, 8 PM: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
